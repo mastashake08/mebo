@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.meboupdater" name="[COLOR white]Fists-O-Fury[/COLOR]" version="1.6" provider-name="[COLOR purple]Megatron[/COLOR]">
+<addon id="plugin.video.meboupdater" name="[COLOR white]MEBO Updater[/COLOR]" version="1.0" provider-name="[COLOR purple]MEBO[/COLOR]">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -12,11 +12,8 @@
     <disclaimer>[COLOR yellow]Kodi will close and need to be restarted after wipe finishes[/COLOR]</disclaimer>
     <platform>all</platform>
 		<assets>
-			<icon>resources/icon.png</icon>
-			<fanart>resources/fanart.jpg</fanart>
-			<screenshot>resources/screenshot-01.png</screenshot>
-			<screenshot>resources/screenshot-02.png</screenshot>
-			<screenshot>resources/screenshot-03.png</screenshot>
+			<website>https://mebo.tv</website>
+      <source>https://github.com/mastashake08/mebo/</source>
 		</assets>
     </extension>
 </addon>
