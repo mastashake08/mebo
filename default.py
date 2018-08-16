@@ -8,15 +8,15 @@ import time
 
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
-base='http://mega-tron.tv/fistsofury/'
-addon=xbmcaddon.Addon(id='plugin.video.fistsofury')
-    
+base='https://mebo.tv.wp-content/public/'
+addon=xbmcaddon.Addon(id='plugin.video.meboupdater')
+
 VERSION = "1.6"
-PATH = "Fists-O-Fury"
+PATH = "MEBO Updater"
 
 #########################################################################################################################################################
-skinspath  =  xbmc.translatePath(os.path.join('special://home','addons','plugin.video.fistsofury','resources','skins'))
-furypath  =  xbmc.translatePath(os.path.join('special://home','addons','plugin.video.fistsofury'))
+skinspath  =  xbmc.translatePath(os.path.join('special://home','addons','plugin.video.meboupdater','resources','skins'))
+furypath  =  xbmc.translatePath(os.path.join('special://home','addons','plugin.video.meboupdater'))
 dialog = xbmcgui.Dialog()
 dp = xbmcgui.DialogProgress()
 
@@ -34,14 +34,14 @@ if addon.getSetting('ask')=='false':
 addon.setSetting('ask','true')
 
 def CATEGORIES():
-    addDir('Install','http://mega-tron.tv/fistsofury/tissuebox.zip',1,install_icon,fanart_background,'Install addons and repos.')
+    addDir('Install','https://mebo.tv/wp-content/uploads/mebo-addons.zip',1,install_icon,fanart_background,'Install addons and repos.')
     if addon.getSetting('wipe')=='true':
-        addDir('Wipe','http://mega-tron.tv/fistsofury/',2,wipe_icon,fanart_background,'Completely wipe Fists-O-Fury addons/repos.')
+        addDir('Wipe','https://mebo.tv/wp-content/uploads/',2,wipe_icon,fanart_background,'Completely wipe MEBO Updater addons/repos.')
     if not addon.getSetting('wipe')=='true':
-        addDir('Wipe','http://mega-tron.tv/fistsofury/',3,wipe_icon,fanart_background,'Completely wipe Fists-O-Fury addons/repos.')
-    addDir('Help','http://mega-tron.tv/fistsofury/',4,help_icon,fanart_background,'Help make Fists-O-Fury better.')
+        addDir('Wipe','https://mebo.tv/wp-content/uploads/',3,wipe_icon,fanart_background,'Completely wipe MEBO Updater addons/repos.')
+    addDir('Help','https://mebo.tv/wp-content/uploads/',4,help_icon,fanart_background,'Help make MEBO Updater better.')
     setView('movies', 'MAIN')
-    
+
 def OPEN_URL(url):
     req = urllib2.Request(url)
     req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -68,7 +68,7 @@ def wizard(name,url,description):
     extract.all(lib,addonfolder,dp)
     xbmc.sleep(200)
     xbmc.executebuiltin('UpdateLocalAddons()')
-    stringslink=OPEN_URL('http://mega-tron.tv/fistsofury/strings.txt')
+    stringslink=OPEN_URL('https://mebo.tv/wp-content/uploads/strings.txt')
     strings=re.compile('string="(.+?)"').findall(stringslink)
     for stringname in strings:
         query = '{"jsonrpc":"2.0", "method":"Addons.SetAddonEnabled","params":{"addonid":"%s","enabled":true},"id":1}' % (stringname)
@@ -108,7 +108,7 @@ def setSetting(setting, value):
 
 def Wipe():
     if dialog.yesno("[COLOR red]Attention[/COLOR]","[CR][COLOR yellow]Do you want to [COLOR blue]wipe [/COLOR]adult content?[/COLOR]","[COLOR red]Kodi will close and need to be restarted after wipe finishes.[/COLOR]"):
-        stringslink=OPEN_URL('http://mega-tron.tv/fistsofury/strings.txt')
+        stringslink=OPEN_URL('https://mebo.tv/wp-content/uploads/strings.txt')
         strings=re.compile('string="(.+?)"').findall(stringslink)
         for stringname in strings:
             shutil.rmtree(xbmc.translatePath(os.path.join('special://home/addons',stringname)))
@@ -123,7 +123,7 @@ def WipeMessage():
     dialog.ok("[COLOR red]Attention[/COLOR]","[CR][COLOR yellow]Must install [/COLOR][COLOR blue]adult package [/COLOR][COLOR yellow]before using wipe feature[/COLOR]","")
 
 def HelpMessage():
-    dialog.ok('[COLOR red]Help make Fists-O-Fury better[/COLOR]','[COLOR white]-Report dead and outdated addons/repos[/COLOR]','[COLOR yellow]-Suggest new addons/repos[/COLOR]','[COLOR blue]-Contact support@mega-tron.tv[/COLOR]')
+    dialog.ok('[COLOR red]Help make MEBO Updater better[/COLOR]','[COLOR white]-Report dead and outdated addons/repos[/COLOR]','[COLOR yellow]-Suggest new addons/repos[/COLOR]','[COLOR blue]-Contact support@mega-tron.tv[/COLOR]')
 
 def get_params():
         param=[]
@@ -140,10 +140,10 @@ def get_params():
                         splitparams=pairsofparams[i].split('=')
                         if (len(splitparams))==2:
                                 param[splitparams[0]]=splitparams[1]
-                                
+
         return param
-        
-                      
+
+
 params=get_params()
 url=None
 name=None
@@ -165,20 +165,20 @@ try:
         iconimage=urllib.unquote_plus(params["iconimage"])
 except:
         pass
-try:        
+try:
         mode=int(params["mode"])
 except:
         pass
-try:        
+try:
         fanart=urllib.unquote_plus(params["fanart"])
 except:
         pass
-try:        
+try:
         description=urllib.unquote_plus(params["description"])
 except:
         pass
-        
-        
+
+
 print str(PATH)+': '+str(VERSION)
 print "Mode: "+str(mode)
 print "URL: "+str(url)
@@ -192,14 +192,14 @@ def setView(content, viewType):
         xbmcplugin.setContent(int(sys.argv[1]), content)
     if addon.getSetting('auto-view')=='true':
         xbmc.executebuiltin("Container.SetViewMode(%s)" % addon.getSetting(viewType) )
-        
-        
+
+
 if mode==None or url==None or len(url)<1:
         CATEGORIES()
-       
+
 elif mode==1:
         wizard(name,url,description)
-        
+
 elif mode==2:
         Wipe()
 
@@ -208,6 +208,5 @@ elif mode==3:
 
 elif mode==4:
         HelpMessage()
-        
-xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
+xbmcplugin.endOfDirectory(int(sys.argv[1]))
