@@ -12,7 +12,7 @@
     <disclaimer>[COLOR yellow]Kodi will close and need to be restarted after wipe finishes[/COLOR]</disclaimer>
     <platform>all</platform>
 		<assets>
-			<icon>resources/manual-mebo-title.png</icon>
+			<icon>resources/icon.png</icon>
 			<website>https://mebo.tv</website>
       <source>https://github.com/mastashake08/mebo/</source>
 		</assets>
