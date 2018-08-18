@@ -52,7 +52,7 @@ def OPEN_URL(url):
 
 def wizard(name,url,description):
     path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
-    dp.create("[COLOR red]Attention[/COLOR]","[COLOR yellow]Downloading... [/COLOR]",'', 'Please wait...')
+    dp.create("[COLOR red]Attention[/COLOR]","[COLOR yellow]Downloading [/COLOR]" + name + "[COLOR yellow]... [/COLOR]",'', 'Please wait...')
     lib=os.path.join(path, name+'.zip')
     try:
        os.remove(lib)
